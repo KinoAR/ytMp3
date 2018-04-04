@@ -36,7 +36,7 @@ module.exports = {
         const data = results.filter(video => video.title === videoTitle)[0];
         outputFormat().then(value => {
           ytdl(data.link, { quality: 'highestaudio' })
-            .pipe(fs.createWriteStream(`./music/${value.fileName}.${value.format}`))
+            .pipe(fs.createWriteStream(`${value.fileName}.${value.format}`))
             .on('close', () => {
               console.log(chalk.yellow(`${value.fileName}.${value.format} download complete.`));
             });
