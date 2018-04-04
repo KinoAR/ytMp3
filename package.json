@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Allows the user to download video from youtube in different formats.",
   "main": "index.js",
+  "bin": "src/index.js",
   "scripts": {
     "test": "node src/index.js",
     "start": "node src/index.js"
