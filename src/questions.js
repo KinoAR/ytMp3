@@ -38,7 +38,7 @@ module.exports = {
         const data = results.filter(video => video.title === videoTitle)[0];
         outputFormat().then(value => {
           const outFileName = `${value.fileName}.${value.format}`;
-          const outSource = path.resolve(`${value.fileName}.mp4`);
+          const outSource = path.resolve(outFileName);
           ffmpeg.convertUrl(data.link, 'encoding')
             .pipe(fs.createWriteStream(outSource))
             .on('finish', () => {
