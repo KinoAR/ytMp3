@@ -1,5 +1,10 @@
 node_modules/
 node_modules
 package-lock.json
+*.avi
+*.flv
+*.mp4
+*.m3ua
+*.ogg
 *.mp3
 key.js

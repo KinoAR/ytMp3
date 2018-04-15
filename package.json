@@ -22,7 +22,9 @@
     "clear": "^0.1.0",
     "clui": "^0.3.6",
     "commander": "^2.15.1",
+    "ffmpeg": "0.0.4",
     "figlet": "^1.2.0",
+    "fluent-ffmpeg": "^2.1.2",
     "inquirer": "^5.2.0",
     "youtube-search": "^1.1.0",
     "ytdl-core": "^0.20.2"

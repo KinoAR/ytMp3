@@ -4,6 +4,8 @@ const ytdl = require('ytdl-core');
 const ytsearch = require('youtube-search');
 const chalk = require('chalk');
 const ytapi = require("./key"); //Include your own YT API key obtained from google
+const ffmpeg = require('./conversion');
+const path = require('path');
 
 module.exports = {
   searchVideo: () => {
@@ -35,10 +37,13 @@ module.exports = {
         const videoTitle = value.searchList;
         const data = results.filter(video => video.title === videoTitle)[0];
         outputFormat().then(value => {
-          ytdl(data.link, { quality: 'highestaudio' })
-            .pipe(fs.createWriteStream(`${value.fileName}.${value.format}`))
-            .on('close', () => {
-              console.log(chalk.yellow(`${value.fileName}.${value.format} download complete.`));
+          const outFileName = `${value.fileName}.${value.format}`;
+          const outSource = path.resolve(`${value.fileName}.mp4`);
+          ffmpeg.convertUrl(data.link, 'encoding')
+            .pipe(fs.createWriteStream(outSource))
+            .on('finish', () => {
+              console.log(chalk.yellow(`${outFileName} processing...`));
+              ffmpeg.convertFile(data.link, value.format, outSource, value.fileName);
             });
         });
       })
